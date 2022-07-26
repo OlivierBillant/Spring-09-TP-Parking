@@ -61,7 +61,7 @@ public class ParkingManagerImpl implements ParkingManager {
 	}
 
 	@Override
-	public void ajouterVehicule(Vehicule vehicule) {
+	public void ajouterVehicule(Vehicule vehicule) throws ParkingException{
 		try {
 			if (placeDisponible(vehicule.getParking())) {
 				if (vehiculeAutorise(vehicule)) {

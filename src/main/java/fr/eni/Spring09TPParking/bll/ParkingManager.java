@@ -15,7 +15,7 @@ public interface ParkingManager {
 	
 	public ArrayList<Vehicule> afficherToutVehicule();
 	public Voiture afficherUnVoiture(Integer id);
-	public void ajouterVehicule(Vehicule vehicule);
+	public void ajouterVehicule(Vehicule vehicule) throws ParkingException;
 	public void modifierVoiture(Voiture voiture);
 	public void supprimerUnVoiture(Integer id);
 	

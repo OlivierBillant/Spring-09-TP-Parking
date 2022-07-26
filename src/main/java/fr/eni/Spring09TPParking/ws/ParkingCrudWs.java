@@ -3,6 +3,8 @@ package fr.eni.Spring09TPParking.ws;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import fr.eni.Spring09TPParking.bll.ParkingException;
 import fr.eni.Spring09TPParking.bll.ParkingManager;
 import fr.eni.Spring09TPParking.bo.Parking;
 import fr.eni.Spring09TPParking.bo.Vehicule;
@@ -39,21 +42,18 @@ public class ParkingCrudWs {
 	}
 
 	@PostMapping("/voiture")
-	public void ajouterVehicule(@RequestBody Vehicule vehicule) {
-		parkingManager.ajouterVehicule(vehicule);
+	public ResponseEntity<String> ajouterVehicule(@RequestBody Voiture voiture) {
+		try {
+			parkingManager.ajouterVehicule(voiture);
+			return new ResponseEntity<String>("Ajout reussi", HttpStatus.ACCEPTED);
+		} catch (ParkingException pe) {
+			return new ResponseEntity<String>(pe.getMessage(), HttpStatus.METHOD_NOT_ALLOWED);
+		}
 	}
 
 	/*
-	 * { 
-	 * "immatriculation": "QR-369-ST", 
-	 * "marque": "Tesla", 
-	 * "modele": "Model3",
-	 * "parking": { 
-	 * 	"idParking": 2, 
-	 * 	"adresse": "Liberte", 
-	 * 	"capacite": 150 
-	 * } 
-	 * }
+	 * { "immatriculation": "QR-369-ST", "marque": "Tesla", "modele": "Model3",
+	 * "parking": { "idParking": 2, "adresse": "Liberte", "capacite": 150 } }
 	 */
 
 	@PutMapping("/voiture")
