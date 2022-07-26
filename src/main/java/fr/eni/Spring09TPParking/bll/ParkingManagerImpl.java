@@ -15,7 +15,6 @@ public class ParkingManagerImpl implements ParkingManager {
 	@Autowired
 	private ParkingDao parkingDao;
 
-
 	@Autowired
 	private VoitureDao voitureDao;
 
@@ -57,7 +56,16 @@ public class ParkingManagerImpl implements ParkingManager {
 
 	@Override
 	public void ajouterVoiture(Voiture voiture) {
-		voitureDao.save(voiture);
+		try {
+			if (placeDisponible(voiture.getParking())) {
+				voiture.getParking().garerVoiture(voiture);
+				voitureDao.save(voiture);
+			} else {
+				throw new ParkingException("Aucune place disponible dans ce parking");
+			}
+		} catch (ParkingException pe) {
+			System.out.println("ERREUR : "+pe.getMessage());
+		}
 	}
 
 	@Override
@@ -69,6 +77,17 @@ public class ParkingManagerImpl implements ParkingManager {
 	@Override
 	public void supprimerUnVoiture(Integer id) {
 		voitureDao.deleteById(id);
+	}
+
+	@Override
+	public Boolean placeDisponible(Parking parking) {
+		Boolean placeDisponible = true;
+		System.out.println("Nombre de voitures dans le parking : "+parking.getListeVoitures().size());
+		if (parking.getListeVoitures().size() < parking.getCapacite()) {
+			return placeDisponible;
+		} else {
+			return !placeDisponible;
+		}
 	}
 
 }

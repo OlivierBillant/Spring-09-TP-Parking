@@ -17,4 +17,6 @@ public interface ParkingManager {
 	public void ajouterVoiture(Voiture voiture);
 	public void modifierVoiture(Voiture voiture);
 	public void supprimerUnVoiture(Integer id);
+	
+	public Boolean placeDisponible(Parking parking);
 }

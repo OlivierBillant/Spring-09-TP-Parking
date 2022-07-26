@@ -1,5 +1,7 @@
 package fr.eni.Spring09TPParking;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -19,13 +21,14 @@ public class Spring09TpParkingApplication implements CommandLineRunner {
 	@Autowired
 	private ParkingManager parkingManager;
 
+	@Transactional
 	@Override
 	public void run(String... args) throws Exception {
 
 		// Creation Parking
 		System.out.println("");
 		System.out.println("Creation Parkings");
-		Parking kerfautras = new Parking("Kerfautras", 200);
+		Parking kerfautras = new Parking("Kerfautras", 2);
 		Parking liberte = new Parking("Liberte", 150);
 		Parking ikea = new Parking("Ikea", 1000);
 
@@ -35,13 +38,14 @@ public class Spring09TpParkingApplication implements CommandLineRunner {
 		Voiture Captur = new Voiture("AB-123-CD", "Renault", "Captur", kerfautras);
 		Voiture Fiesta = new Voiture("EF-456-GH", "Ford", "Fiesta", kerfautras);
 		Voiture Focus = new Voiture("IJ-789-KL", "Ford", "Focus", liberte);
-		Voiture Zoe = new Voiture("MN-147-OP", "Renault", "Zoe", ikea);
+		Voiture Zoe = new Voiture("MN-147-OP", "Renault", "Zoe", kerfautras);
 
 		// Test crud db
 		System.out.println("");
 		System.out.println("Test CRUD");
 
 		// Ajout
+		
 		System.out.println("");
 		System.out.println("Ajout");
 		parkingManager.ajouterParking(kerfautras);
@@ -63,6 +67,7 @@ public class Spring09TpParkingApplication implements CommandLineRunner {
 		System.out.println("Affichage byId");
 		System.out.println(parkingManager.afficherUnParking(2));
 		System.out.println(parkingManager.afficherUnVoiture(1));
+		kerfautras.getListeVoitures().forEach(System.out::println);
 	}
 
 }
