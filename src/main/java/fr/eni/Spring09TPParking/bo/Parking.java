@@ -32,7 +32,7 @@ public class Parking {
 	@OneToMany(mappedBy = "parking")
 	@ToString.Exclude
 	@JsonIgnore
-	private Set<Voiture> listeVoitures = new HashSet<>();
+	private Set<Vehicule> listeVehicules = new HashSet<>();
 	
 	public Parking(String adresse, Integer capacite) {
 		super();
@@ -42,11 +42,11 @@ public class Parking {
 
 	@Override
 	public String toString() {
-		return "ParkingDao [adresse=" + adresse + ", capacite=" + capacite + "]";
+		return "Parking [adresse=" + adresse + ", capacite=" + (capacite-listeVehicules.size())+"/"+capacite + "]";
 	}
 	
-	public void garerVoiture(Voiture voiture) {
-		listeVoitures.add(voiture);
+	public void garerVehicule(Vehicule vehicule) {
+		listeVehicules.add(vehicule);
 	}
 	
 }

@@ -3,6 +3,7 @@ package fr.eni.Spring09TPParking.bll;
 import java.util.ArrayList;
 
 import fr.eni.Spring09TPParking.bo.Parking;
+import fr.eni.Spring09TPParking.bo.Vehicule;
 import fr.eni.Spring09TPParking.bo.Voiture;
 
 public interface ParkingManager {
@@ -12,9 +13,9 @@ public interface ParkingManager {
 	public void modifierParking(Parking parking);
 	public void supprimerUnParking(Integer id);
 	
-	public ArrayList<Voiture> afficherToutVoiture();
+	public ArrayList<Vehicule> afficherToutVehicule();
 	public Voiture afficherUnVoiture(Integer id);
-	public void ajouterVoiture(Voiture voiture);
+	public void ajouterVehicule(Vehicule vehicule);
 	public void modifierVoiture(Voiture voiture);
 	public void supprimerUnVoiture(Integer id);
 	

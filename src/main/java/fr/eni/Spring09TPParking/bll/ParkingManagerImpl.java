@@ -6,8 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.eni.Spring09TPParking.bo.Parking;
+import fr.eni.Spring09TPParking.bo.Vehicule;
+import fr.eni.Spring09TPParking.bo.Velo;
 import fr.eni.Spring09TPParking.bo.Voiture;
 import fr.eni.Spring09TPParking.dal.ParkingDao;
+import fr.eni.Spring09TPParking.dal.VehiculeDao;
 import fr.eni.Spring09TPParking.dal.VoitureDao;
 
 @Service
@@ -17,6 +20,9 @@ public class ParkingManagerImpl implements ParkingManager {
 
 	@Autowired
 	private VoitureDao voitureDao;
+
+	@Autowired
+	private VehiculeDao vehiculeDao;
 
 	@Override
 	public ArrayList<Parking> afficherToutParking() {
@@ -45,8 +51,8 @@ public class ParkingManagerImpl implements ParkingManager {
 	}
 
 	@Override
-	public ArrayList<Voiture> afficherToutVoiture() {
-		return (ArrayList<Voiture>) voitureDao.findAll();
+	public ArrayList<Vehicule> afficherToutVehicule() {
+		return (ArrayList<Vehicule>) vehiculeDao.findAll();
 	}
 
 	@Override
@@ -55,16 +61,20 @@ public class ParkingManagerImpl implements ParkingManager {
 	}
 
 	@Override
-	public void ajouterVoiture(Voiture voiture) {
+	public void ajouterVehicule(Vehicule vehicule) {
 		try {
-			if (placeDisponible(voiture.getParking())) {
-				voiture.getParking().garerVoiture(voiture);
-				voitureDao.save(voiture);
+			if (placeDisponible(vehicule.getParking())) {
+				if (vehiculeAutorise(vehicule)) {
+					vehicule.getParking().garerVehicule(vehicule);
+					vehiculeDao.save(vehicule);
+				} else {
+					throw new ParkingException("Véhicule non-autorisé");
+				}
 			} else {
 				throw new ParkingException("Aucune place disponible dans ce parking");
 			}
 		} catch (ParkingException pe) {
-			System.out.println("ERREUR : "+pe.getMessage());
+			System.out.println("ERREUR : " + pe.getMessage());
 		}
 	}
 
@@ -82,11 +92,20 @@ public class ParkingManagerImpl implements ParkingManager {
 	@Override
 	public Boolean placeDisponible(Parking parking) {
 		Boolean placeDisponible = true;
-		System.out.println("Nombre de voitures dans le parking : "+parking.getListeVoitures().size());
-		if (parking.getListeVoitures().size() < parking.getCapacite()) {
+//		System.out.println("Nombre de voitures dans le parking : " + parking.getListeVehicules().size());
+		if (parking.getListeVehicules().size() < parking.getCapacite()) {
 			return placeDisponible;
 		} else {
 			return !placeDisponible;
+		}
+	}
+
+	public Boolean vehiculeAutorise(Vehicule vehicule) {
+		Boolean vehiculeAutorise = true;
+		if (vehicule instanceof Velo) {
+			return !vehiculeAutorise;
+		} else {
+			return vehiculeAutorise;
 		}
 	}
 

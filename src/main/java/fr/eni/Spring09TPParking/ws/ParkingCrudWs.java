@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import fr.eni.Spring09TPParking.bll.ParkingManager;
 import fr.eni.Spring09TPParking.bo.Parking;
+import fr.eni.Spring09TPParking.bo.Vehicule;
 import fr.eni.Spring09TPParking.bo.Voiture;
 
 @RestController
@@ -23,8 +24,8 @@ public class ParkingCrudWs {
 	private ParkingManager parkingManager;
 
 	@GetMapping("/voiture")
-	public ArrayList<Voiture> afficherToutVoiture() {
-		return parkingManager.afficherToutVoiture();
+	public ArrayList<Vehicule> afficherToutVoiture() {
+		return parkingManager.afficherToutVehicule();
 	}
 
 	@GetMapping("/voiture/{id}")
@@ -38,8 +39,8 @@ public class ParkingCrudWs {
 	}
 
 	@PostMapping("/voiture")
-	public void ajouterVoiture(@RequestBody Voiture voiture) {
-		parkingManager.ajouterVoiture(voiture);
+	public void ajouterVehicule(@RequestBody Vehicule vehicule) {
+		parkingManager.ajouterVehicule(vehicule);
 	}
 
 	/*
