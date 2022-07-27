@@ -49,34 +49,34 @@ public class Spring09TpParkingApplication implements CommandLineRunner {
 		System.out.println("");
 		System.out.println("Test CRUD");
 
-//		// Ajout
-//
-//		System.out.println("");
-//		System.out.println("Ajout");
-//		parkingManager.ajouterParking(kerfautras);
-//		parkingManager.ajouterParking(liberte);
-//		parkingManager.ajouterParking(ikea);
-//		parkingManager.ajouterVehicule(Captur);
-//		parkingManager.ajouterVehicule(Fiesta);
-//		parkingManager.ajouterVehicule(Focus);
-//		parkingManager.ajouterVehicule(Zoe);
-//		parkingManager.ajouterVehicule(Bandit);
-//		parkingManager.ajouterVehicule(vog);
-//		
-//		
-//
-//		// Affichage all
-//		System.out.println("");
-//		System.out.println("Affichage all");
-//		parkingManager.afficherToutParking().forEach(System.out::println);
-//		parkingManager.afficherToutVehicule().forEach(System.out::println);
-//
-//		// Affichage byId
-//		System.out.println("");
-//		System.out.println("Affichage byId");
-//		System.out.println(parkingManager.afficherUnParking(2));
-//		System.out.println(parkingManager.afficherUnVoiture(1));
-//		System.out.println(parkingManager.afficherUnVehicule(1));
+		// Ajout
+
+		System.out.println("");
+		System.out.println("Ajout");
+		parkingManager.ajouterParking(kerfautras);
+		parkingManager.ajouterParking(liberte);
+		parkingManager.ajouterParking(ikea);
+		parkingManager.ajouterVehicule(Captur);
+		parkingManager.ajouterVehicule(Fiesta);
+		parkingManager.ajouterVehicule(Focus);
+		parkingManager.ajouterVehicule(Zoe);
+		parkingManager.ajouterVehicule(Bandit);
+		parkingManager.ajouterVehicule(vog);
+		
+		
+
+		// Affichage all
+		System.out.println("");
+		System.out.println("Affichage all");
+		parkingManager.afficherToutParking().forEach(System.out::println);
+		parkingManager.afficherToutVehicule().forEach(System.out::println);
+
+		// Affichage byId
+		System.out.println("");
+		System.out.println("Affichage byId");
+		System.out.println(parkingManager.afficherUnParking(2));
+		System.out.println(parkingManager.afficherUnVehicule(1));
+		System.out.println(parkingManager.afficherUnVehicule(1));
 	}
 
 }

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Parkings</title>
+</head>
+
+<body>
+	<h1>Parking</h1>
+<div>
+<h1>Hello Parking</h1>
+	<p th:text="${listeParking}"></p>
+</div>
+<div>
+<div th:each="parking : ${listeParking}">
+		<span th:text="${parking.adresse}" /> <span th:text="${parking.capacite}" /> 
+	</div>
+</div>
+
+</body>
+
+</html>

@@ -62,7 +62,7 @@ public class ParkingManagerImpl implements ParkingManager {
 
 	@Override
 	public void ajouterVehicule(Vehicule vehicule) throws ParkingException{
-//		try {
+		try {
 			if (placeDisponible(vehicule.getParking())) {
 				if (vehiculeAutorise(vehicule)) {
 					vehicule.getParking().garerVehicule(vehicule);
@@ -73,9 +73,9 @@ public class ParkingManagerImpl implements ParkingManager {
 			} else {
 				throw new ParkingException("Aucune place disponible dans ce parking");
 			}
-//		} catch (ParkingException pe) {
-//			System.out.println("ERREUR : " + pe.getMessage());
-//		}
+		} catch (ParkingException pe) {
+			System.out.println("ERREUR : " + pe.getMessage());
+		}
 	}
 
 	@Override
