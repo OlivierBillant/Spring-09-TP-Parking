@@ -15,6 +15,12 @@ public interface ParkingManager {
 	
 	public ArrayList<Vehicule> afficherToutVehicule();
 	public Voiture afficherUnVoiture(Integer id);
+	
+	/**
+	 * Ajoute un véhicule générique à un parking.
+	 * @param vehicule contrainte sur capacité et type véhicule
+	 * @throws ParkingException
+	 */
 	public void ajouterVehicule(Vehicule vehicule) throws ParkingException;
 	public void modifierVoiture(Voiture voiture);
 	public void supprimerUnVoiture(Integer id);
