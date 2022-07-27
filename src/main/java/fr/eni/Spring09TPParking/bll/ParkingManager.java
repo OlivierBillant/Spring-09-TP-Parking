@@ -14,7 +14,7 @@ public interface ParkingManager {
 	public void supprimerUnParking(Integer id);
 	
 	public ArrayList<Vehicule> afficherToutVehicule();
-	public Voiture afficherUnVoiture(Integer id);
+	public Vehicule afficherUnVehicule(Integer id);
 	
 	/**
 	 * Ajoute un véhicule générique à un parking.

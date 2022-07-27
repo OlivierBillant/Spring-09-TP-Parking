@@ -56,8 +56,8 @@ public class ParkingManagerImpl implements ParkingManager {
 	}
 
 	@Override
-	public Voiture afficherUnVoiture(Integer id) {
-		return voitureDao.findById(id).orElse(null);
+	public Vehicule afficherUnVehicule(Integer id) {
+		return vehiculeDao.findById(id).orElse(null);
 	}
 
 	@Override

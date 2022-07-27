@@ -32,8 +32,8 @@ public class ParkingCrudWs {
 	}
 
 	@GetMapping("/voiture/{id}")
-	public Voiture afficherUnVoiture(@PathVariable("id") Integer id) {
-		return parkingManager.afficherUnVoiture(id);
+	public Vehicule afficherUnVoiture(@PathVariable("id") Integer id) {
+		return parkingManager.afficherUnVehicule(id);
 	}
 
 	@DeleteMapping("/voiture/{id}")

@@ -76,6 +76,7 @@ public class Spring09TpParkingApplication implements CommandLineRunner {
 //		System.out.println("Affichage byId");
 //		System.out.println(parkingManager.afficherUnParking(2));
 //		System.out.println(parkingManager.afficherUnVoiture(1));
+//		System.out.println(parkingManager.afficherUnVehicule(1));
 	}
 
 }
